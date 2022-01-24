@@ -1,0 +1,36 @@
+package com.devonfw.application.jtqj.visitormanagement.service.impl.rest;
+
+import com.devonfw.application.jtqj.visitormanagement.common.api.Visitor;
+import com.devonfw.application.jtqj.visitormanagement.logic.api.Visitormanagement;
+import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorEto;
+import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorCto;
+import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorSearchCriteriaTo;
+import com.devonfw.application.jtqj.visitormanagement.service.api.rest.VisitormanagementRestService;
+
+import org.springframework.data.domain.Page;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.ws.rs.BadRequestException;
+import javax.ws.rs.NotFoundException;
+
+
+/**
+ * The service implementation for REST calls in order to execute the logic of component {@link Visitormanagement}.
+ */
+@Named("VisitormanagementRestService")
+public class VisitormanagementRestServiceImpl implements VisitormanagementRestService{
+
+  @Inject
+  private Visitormanagement visitormanagement;
+  
+  @Override
+  public VisitorCto getVisitorCto(long id) {
+    return this.visitormanagement.findVisitorCto(id);
+  }
+
+  @Override
+  public Page<VisitorCto> findVisitorCtos(VisitorSearchCriteriaTo searchCriteriaTo) {
+    return this.visitormanagement.findVisitorCtos(searchCriteriaTo);
+  }
+}

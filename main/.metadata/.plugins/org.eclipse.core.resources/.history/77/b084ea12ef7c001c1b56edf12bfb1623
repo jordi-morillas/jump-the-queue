@@ -1,0 +1,9 @@
+package com.devonfw.application.jtqj.queuemanagement.dataaccess.api;
+
+/**
+ * TODO fferriol This type ...
+ *
+ */
+public class QueueEntity {
+
+}

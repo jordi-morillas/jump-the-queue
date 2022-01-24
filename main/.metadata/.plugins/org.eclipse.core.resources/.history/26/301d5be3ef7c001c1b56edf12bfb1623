@@ -1,0 +1,49 @@
+package com.devonfw.application.jtqj.queuemanagement.logic.impl.usecase;
+
+import com.devonfw.application.jtqj.queuemanagement.logic.api.to.QueueEto;
+import com.devonfw.application.jtqj.queuemanagement.logic.api.usecase.UcFindQueue;
+import com.devonfw.application.jtqj.queuemanagement.logic.base.usecase.AbstractQueueUc;
+import com.devonfw.application.jtqj.queuemanagement.dataaccess.api.QueueEntity;
+import com.devonfw.application.jtqj.queuemanagement.logic.api.to.QueueSearchCriteriaTo;
+import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.validation.annotation.Validated;
+import java.util.List;
+
+import javax.inject.Named;
+
+import org.springframework.transaction.annotation.Transactional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Use case implementation for searching, filtering and getting Queues
+ */
+@Named
+@Validated
+@Transactional
+public class UcFindQueueImpl extends AbstractQueueUc implements UcFindQueue {
+
+	  /** Logger instance. */
+    private static final Logger LOG = LoggerFactory.getLogger(UcFindQueueImpl.class);
+
+
+    @Override
+    public QueueEto findQueue( long id) {
+      LOG.debug("Get Queue with id {} from database.", id);
+      Optional<QueueEntity> foundEntity = getQueueRepository().findById(id);
+      if (foundEntity.isPresent())
+        return getBeanMapper().map(foundEntity.get(), QueueEto.class);
+      else
+        return null;
+    }
+
+    @Override
+    public Page<QueueEto> findQueues(QueueSearchCriteriaTo criteria) {
+      Page<QueueEntity> queues = getQueueRepository().findByCriteria(criteria);
+    return mapPaginatedEntityList(queues, QueueEto.class);
+  }
+
+}

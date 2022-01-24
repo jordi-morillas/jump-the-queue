@@ -1,0 +1,9 @@
+package com.devonfw.application.jtqj.accesscodemanagement.dataaccess.api;
+
+/**
+ * TODO fferriol This type ...
+ *
+ */
+public class AccessCodeEntity {
+
+}

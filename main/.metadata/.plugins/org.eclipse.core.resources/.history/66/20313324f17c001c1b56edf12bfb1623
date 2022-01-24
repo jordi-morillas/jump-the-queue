@@ -1,0 +1,29 @@
+package com.devonfw.application.jtqj.visitormanagement.logic.api.usecase;
+
+import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorEto;
+import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorCto;
+import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorSearchCriteriaTo;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
+
+public interface UcFindVisitor {
+
+  /**
+   * Returns a composite Visitor by its id 'id'.
+   *
+   * @param id The id 'id' of the Visitor.
+   * @return The {@link VisitorCto} with id 'id'
+   */
+  VisitorCto findVisitorCto(long id);
+  
+  /**
+   * Returns a paginated list of composite Visitors matching the search criteria.
+   *
+   * @param criteria the {@link VisitorSearchCriteriaTo}.
+   * @return the {@link List} of matching {@link VisitorCto}s.
+   */
+  Page<VisitorCto> findVisitorCtos(VisitorSearchCriteriaTo criteria);
+
+}

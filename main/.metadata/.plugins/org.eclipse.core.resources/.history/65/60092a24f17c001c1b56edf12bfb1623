@@ -1,0 +1,36 @@
+package com.devonfw.application.jtqj.visitormanagement.logic.impl;
+
+import com.devonfw.application.jtqj.general.logic.base.AbstractComponentFacade;
+import com.devonfw.application.jtqj.visitormanagement.logic.api.Visitormanagement;
+import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorEto;
+import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorCto;
+import com.devonfw.application.jtqj.visitormanagement.logic.api.usecase.UcFindVisitor;
+import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorSearchCriteriaTo;
+import org.springframework.data.domain.Page;
+
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
+/**
+ * Implementation of component interface of visitormanagement
+ */
+@Named
+public class VisitormanagementImpl extends AbstractComponentFacade implements Visitormanagement {
+
+    @Inject
+    private UcFindVisitor ucFindVisitor;
+
+    @Override
+    public VisitorCto findVisitorCto( long  id) {
+    
+      return ucFindVisitor.findVisitorCto(id);
+    }
+    
+    @Override
+    public Page<VisitorCto> findVisitorCtos(VisitorSearchCriteriaTo criteria) {
+    
+      return ucFindVisitor.findVisitorCtos(criteria);
+    }
+}

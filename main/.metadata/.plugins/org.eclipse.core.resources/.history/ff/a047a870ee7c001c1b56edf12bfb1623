@@ -1,0 +1,19 @@
+package com.devonfw.application.jtqj.visitormanagement.dataaccess.api;
+
+@Entity
+@Table(name = "Visitor")
+public class VisitorEntity {
+  private String username;
+
+  private String name;
+
+  private String phoneNumber;
+
+  private String password;
+
+  private Boolean acceptedCommercial;
+
+  private Boolean acceptedTerms;
+
+  private Boolean userType;
+}
